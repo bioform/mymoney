@@ -1,0 +1,6 @@
+template(name="newPost")
+  form#newPost.form-inline
+    input.input-xlarge(name="title", type="text", placeholder="Title")
+    input.input-small(name="amount", type="number", placeholder="money")
+    input#new_post_date.input-small(name="date", type="text", value="{{now}}")
+    button.btn.btn-success(type="submit") Add

@@ -1,0 +1,6 @@
+template(name="postList")
+  {{> newPost}}
+
+  {{#each posts}} 
+    {{$ "postItem"}}
+  {{/each}} 

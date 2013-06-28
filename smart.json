@@ -1,0 +1,17 @@
+{
+  "packages": {
+    "router": {},
+    "accounts-ui-bootstrap-dropdown": {},
+    "spin": {},
+    "bootstrap-updated": {},
+    "errors": {},
+    "moment": {},
+    "jade-handlebars": {
+      "git": "git://github.com/SimonDegraeve/meteor-jade-handlebars.git",
+      "branch": "master"
+    },
+    "errors": {
+      "git": "https://github.com/bioform/meteorErrors.git"
+    }
+  }
+}

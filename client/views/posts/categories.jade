@@ -1,0 +1,21 @@
+template(name="categoryMenu")
+  .bs-docs-sidenav.affix(data-spy="affix")
+    ul.nav.nav-list
+      {{#if loading}}
+        li
+          a(href="#", disabled="disabled") Loading...
+
+      {{else}}
+        {{#each categories}} 
+          li.category(class="{{selected}}")
+            {{#if editing}}
+              input#category-name-input(class="category-name-input", type="text", value="{{title}}")
+            {{else}}
+              a(href="#") {{title}}
+            {{/if}}
+        {{/each}} 
+      {{/if}}
+      li.category(class="{{selectedAll}}")
+        a(href="{{postsPagePath}}/all") All Categories
+    #createCategory
+      input(type="text", id="new-category", placeholder="New Category")

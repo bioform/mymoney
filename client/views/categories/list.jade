@@ -1,0 +1,10 @@
+template(name="categoryList")
+  .posts
+    .post.row-fluid
+      form.form-inline
+        input.span4(name="title", type="text", placeholder="Title")
+        button.btn.btn-success(type="submit") Add
+
+    {{#each categories}} 
+      {{> categoryItem }}
+    {{/each}} 

@@ -1,0 +1,10 @@
+template(name="postItem")
+  form.post.form-inline(data-date="{{date}}")
+    .span4 {{title}}
+    .span2
+      span.ruble-times
+        | Р
+        span уб.
+      {{amount}}
+    .span2
+      button.btn(data-id="{{_id}}") Delete
