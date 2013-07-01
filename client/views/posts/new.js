@@ -1,12 +1,8 @@
-Template.newPost.rendered = function(){
-  var datepicker = $('#new_post_date').datepicker({format: 'dd.mm.yyyy'})
-}
+var datePickerFormat  = moment().lang().longDateFormat.L.toLowerCase()
 
-Template.newPost.helpers({
-  now: function () {
-    return moment().format('DD.MM.YYYY');
-  }
-});
+Template.newPost.rendered = function(){
+  var datepicker = $('#new_post_date').datepicker({format: datePickerFormat})
+}
 
 Template.newPost.events({
   'submit form': function(event){
@@ -16,7 +12,7 @@ Template.newPost.events({
     var amount = $(event.target).find('[name=amount]')
     var date   = $(event.target).find('[name=date]')
 
-    date = (date.length > 0) ? moment(date.val(), "DD.MM.YYYY") : null;
+    date = (date.length > 0) ? moment(date.val(), "L") : null;
 
     if( date == null ){
       date = new Date();

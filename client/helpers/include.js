@@ -30,3 +30,7 @@ Handlebars.registerHelper('$', function(partial) {
   //console.log("=====>", JSON.stringify(context))
   return new Handlebars.SafeString( partial(context) )
 })
+
+Handlebars.registerHelper('today', function(){
+  return moment().format('L');
+});

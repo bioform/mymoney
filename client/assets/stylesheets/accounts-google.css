@@ -1,0 +1,30 @@
+#login-dropdown-list a {
+	cursor: pointer;
+}
+
+#login-dropdown-list .caret{
+	margin-left: 5px;
+}
+
+.login-image {
+	height: 16px;
+	width:  16px;
+	background-repeat: no-repeat;
+	float: left;
+}
+.login-image ~ .text-besides-image {
+	display: inline;
+	color: #0088cc;
+}
+
+.or .hline {
+	height: 0px;
+}
+.or .or-text {
+	display: none;
+}
+
+.login-text-and-button {
+	cursor: pointer;
+}
+
