@@ -1,4 +1,5 @@
-var datePickerFormat  = moment().lang().longDateFormat.L.toLowerCase()
+var momentDateFormat = moment().lang().longDateFormat.L
+var datePickerFormat = momentDateFormat.toLowerCase()
 
 Template.newPost.rendered = function(){
   var datepicker = $('#new_post_date').datepicker({format: datePickerFormat})
@@ -12,7 +13,7 @@ Template.newPost.events({
     var amount = $(event.target).find('[name=amount]')
     var date   = $(event.target).find('[name=date]')
 
-    date = (date.length > 0) ? moment(date.val(), "L") : null;
+    date = (date.length > 0) ? moment(date.val(), momentDateFormat) : null;
 
     if( date == null ){
       date = new Date();
