@@ -22,12 +22,17 @@ Meteor.methods({
 		if(!attrs.categoryId)
 			throw new Meteor.Error(422, 'Please fill in the categoryId');
 
+		attrs.amount = parseInt(attrs.amount);
+
 		var post = _.extend(_.pick(attrs, 'amount','title', 'categoryId', 'createdAt'),
 						{
 							userId: user._id,
-							submitted: new Date()
+							submitted: new Date(),
+							year: attrs.createdAt.getYear(),
+							month: attrs.createdAt.getMonth(),
 						}
 		);
+
 
 		var id = Post.insert(post);
 

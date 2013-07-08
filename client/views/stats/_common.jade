@@ -1,0 +1,11 @@
+template(name="commonStats")
+  h3 Common Stats
+  {{#each stats}}
+    .post(data-year="{{year}}")
+      .span2 {{monthName}}
+      .span2
+        span.ruble-times
+          | Р
+          span уб.
+        {{sum}}}
+  {{/each}}

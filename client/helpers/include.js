@@ -27,7 +27,7 @@ Handlebars.registerHelper('$', function(partial) {
   if (!partial) return ''
 
   var context = _.extend({}, opts.context||this, _.omit(opts, 'context', 'fn', 'inverse'))
-  //console.log("=====>", JSON.stringify(context))
+  //console.log("=====>", context.hash);
   return new Handlebars.SafeString( partial(context) )
 })
 

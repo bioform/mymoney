@@ -6,6 +6,7 @@
     "bootstrap-updated": {},
     "errors": {},
     "moment": {},
+    "i18next-meteor": {},
     "jade-handlebars": {
       "git": "git://github.com/SimonDegraeve/meteor-jade-handlebars.git",
       "branch": "master"

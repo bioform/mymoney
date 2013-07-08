@@ -15,6 +15,18 @@ Meteor.Router.add ({
 		}
 	},
 	'/categories': 'categoryList',
+
+	'/stats': {
+		to: 'commonStatsPage',
+		and: function() { Session.set ('category_id', 'all');}
+	},
+	'/stats/:category_id': {
+		as: 'commonStatsPage',
+		to: function(category_id){
+			Session.setDefault('category_id', category_id);
+			return 'commonStatsPage'
+		}
+	},
 });
 
 Meteor.Router.filters({

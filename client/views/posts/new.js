@@ -13,6 +13,11 @@ Template.newPost.events({
     var amount = $(event.target).find('[name=amount]')
     var date   = $(event.target).find('[name=date]')
 
+    var amountVal = parseInt(amount.val());
+    if( isNaN(amountVal) ){
+      return alert("Define amount please");
+    }
+
     date = (date.length > 0) ? moment(date.val(), momentDateFormat) : null;
 
     if( date == null ){
@@ -34,7 +39,7 @@ Template.newPost.events({
     var post = {
 
       title: title.val(),
-      amount: amount.val(),
+      amount: amountVal,
       categoryId: categoryId,
       createdAt: date
     } 

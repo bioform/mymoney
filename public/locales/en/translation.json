@@ -1,0 +1,14 @@
+{
+	"category": {
+		"plural": "Categories",
+		"all": "All Categories",
+		"new": "New Category"
+	},
+	"button": {
+		"delete": "Delete",
+		"add": "Add"
+	},
+	"stats": {
+		"title": "Stats"
+	}
+}

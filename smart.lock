@@ -11,6 +11,7 @@
         "branch": "master"
       },
       "moment": {},
+      "i18next-meteor": {},
       "jade-handlebars": {
         "git": "git://github.com/SimonDegraeve/meteor-jade-handlebars.git",
         "branch": "master"
@@ -46,6 +47,11 @@
         "git": "https://github.com/possibilities/meteor-moment.git",
         "tag": "v1.7.0",
         "commit": "c64b6ec0e714b9556f4b6643d430b868ba69d3d7"
+      },
+      "i18next-meteor": {
+        "git": "https://github.com/ckir/i18next-meteor.git",
+        "tag": "v1.6.0",
+        "commit": "6d922cc0adea92904e51a2a153d26dd66fb2789d"
       },
       "jade-handlebars": {
         "git": "git://github.com/SimonDegraeve/meteor-jade-handlebars.git",

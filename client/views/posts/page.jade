@@ -1,7 +1,7 @@
 template(name="postsPage")
   .posts
     .span3.bs-docs-sidebar
-      {{> categoryMenu}}
+      {{$ "categoryMenu" path="posts"}}
 
     .span9
       {{> postList}}

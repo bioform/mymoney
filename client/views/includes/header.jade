@@ -1,0 +1,14 @@
+template(name='header')
+  header.navbar
+    .navbar-inner
+      a.brand(href="{{#if currentUser}}/posts{{else}}/{{/if}}") My Money
+      ul.nav
+        {{#if currentUser}}
+          li
+            a(href="{{categoryListPath}}") {{ t "category.plural" }}
+          li
+            a(href="{{ commonStatsPagePath }}") {{ t "stats.title" }}
+        {{/if}}
+
+      ul.nav.pull-right
+        li {{loginButtons align="right"}}

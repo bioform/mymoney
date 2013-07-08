@@ -6,11 +6,13 @@ Session.setDefault('editing_category', null);
 // Subscribe to 'categories' collection on startup.
 // Select a category once data has arrived.
 var categoriesHandle = Meteor.subscribe('categories', function () {
+  /*
   if (!Session.get('category_id')) {
     var category = Category.findOne({}, {sort: {title: 1}});
     if (category)
       Router.setCategory(category._id);
   }
+  */
 });
 
 Template.categoryMenu.helpers({
@@ -107,7 +109,7 @@ Template.categoryMenu.events({
   }
 });
 
-Template.categoryMenu.loading = function () {
+Template.categoryMenu.loading = function () {  
   return !categoriesHandle.ready();
 };
 
@@ -126,16 +128,27 @@ Template.categoryMenu.editing = function () {
 
 var PostsRouter = Backbone.Router.extend({
   routes: {
-    "posts/:category_id": "posts"
+    "posts/:category_id": "page",
+    "stats/:category_id": "page"
   },
-  posts: function (category_id) {
+  page: function (category_id) {
+    //duplicate a part of "setCategory"
     var oldCategory = Session.get("category_id");
     if (oldCategory !== category_id) {
       Session.set("category_id", category_id);
     }
   },
   setCategory: function (category_id) {
-    this.navigate("posts/" + category_id, true);
+    var path = $('#categoryMenu').data('path');
+
+    // update session
+    var oldCategory = Session.get("category_id");
+    if (oldCategory !== category_id) {
+      Session.set("category_id", category_id);
+    }
+
+    // change URL
+    this.navigate(path + "/" + category_id, true);
   }
 });
 
