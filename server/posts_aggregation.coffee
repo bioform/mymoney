@@ -32,6 +32,11 @@ agg_amount = (categoryId, fromDate, toDate) ->
 
   pipeline = []
 
+  # filter by user
+  pipeline.push
+    $match:
+      userId: this.userId
+
   # Category Filter
   if categoryId and categoryId != 'all'
     pipeline.push 
