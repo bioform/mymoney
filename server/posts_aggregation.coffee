@@ -28,14 +28,9 @@ Meteor.startup ->
  
     return result[1]
  
-agg_amount = (categoryId, fromDate, toDate) ->
+agg_amount = (userId, categoryId, fromDate, toDate) ->
 
   pipeline = []
-
-  # filter by user
-  pipeline.push
-    $match:
-      userId: this.userId
 
   # Category Filter
   if categoryId and categoryId != 'all'
@@ -47,10 +42,12 @@ agg_amount = (categoryId, fromDate, toDate) ->
         month: 1
         createdAt: 1
         amount: 1
+        userId: 1
 
     pipeline.push
       $match:
-        "categoryId": categoryId
+        categoryId: categoryId
+        userId: userId
 
   else
     pipeline.push 
@@ -60,17 +57,23 @@ agg_amount = (categoryId, fromDate, toDate) ->
         month: 1
         createdAt: 1
         amount: 1
+        userId: 1
+
+    # filter by user
+    pipeline.push
+      $match:
+        userId: userId
 
   # Date Filter
   if fromDate
     pipeline.push
       $match:
-        "createdAt": {$gte: fromDate}
+        createdAt: {$gte: fromDate}
 
   if toDate
     pipeline.push
       $match:
-        "createdAt": {$lt: toDate}
+        createdAt: {$lt: toDate}
 
   # Group By
   if categoryId and categoryId != 'all'
@@ -111,18 +114,19 @@ Post.find({}).forEach (x) ->
 Meteor.publish('sum_by_category', (categoryId) ->
   
   self = this
+  userId = this.userId
   initializing = true
  
   handle = Post.find({categoryId: categoryId}).observeChanges(
     added: (id) ->
       if !initializing
-        self.changed("post_stats", categoryId, agg_amount(categoryId))
+        self.changed("post_stats", categoryId, agg_amount(userId, categoryId))
     changed: (id) ->
-      self.changed("post_stats", categoryId, agg_amount(categoryId))
+      self.changed("post_stats", categoryId, agg_amount(userId, categoryId))
   )
  
   initializing = false
-  self.added("post_stats", categoryId, agg_amount(categoryId))
+  self.added("post_stats", categoryId, agg_amount(userId, categoryId))
   self.ready()
  
   self.onStop( ->
