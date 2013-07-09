@@ -9,4 +9,6 @@ i18n.init({resGetPath: '/locales/__lng__/__ns__.json'}, function(t) {
 
   });
 
+  $("[data-i18n]").i18n();
+
 });

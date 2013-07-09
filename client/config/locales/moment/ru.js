@@ -64,24 +64,24 @@ moment.lang('ru', {
         LLLL : "dddd, D MMMM YYYY г., LT"
     },
     calendar : {
-        sameDay: '[Сегодня]',
-        nextDay: '[Завтра]',
-        lastDay: '[Вчера]',
+        sameDay: 'L [- cегодня]',
+        nextDay: 'L [- завтра]',
+        lastDay: 'L [- вчера]',
         nextWeek: function () {
-            return this.day() === 2 ? '[Во] dddd' : '[В] dddd';
+            return this.day() === 2 ? 'L [- во] dddd' : 'L [- в] dddd';
         },
         lastWeek: function () {
             switch (this.day()) {
             case 0:
-                return '[В прошлое] dddd';
+                return 'L [- в прошлое] dddd';
             case 1:
             case 2:
             case 4:
-                return '[В прошлый] dddd';
+                return 'L [- в прошлый] dddd';
             case 3:
             case 5:
             case 6:
-                return '[В прошлую] dddd';
+                return 'L [- в прошлую] dddd';
             }
         },
         sameElse: 'L'

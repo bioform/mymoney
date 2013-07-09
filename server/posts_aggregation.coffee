@@ -90,7 +90,7 @@ agg_amount = (categoryId, fromDate, toDate) ->
 
  
   data = Post.aggregate(pipeline)
-  console.log("===!!!=====>", data)
+  #console.log("===!!!=====>", data)
   return data
 
 Post.find({}).forEach (x) ->

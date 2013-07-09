@@ -1,5 +1,7 @@
 template(name="commonStats")
-  h3 Common Stats
+  .page-header
+    h1 {{t "stats.title" defaultValue="Statistics"}}
+
   {{#each stats}}
     .post(data-year="{{year}}")
       .span2 {{monthName}}
@@ -7,5 +9,5 @@ template(name="commonStats")
         span.ruble-times
           | Р
           span уб.
-        {{sum}}}
+        span.money {{sum}}}
   {{/each}}

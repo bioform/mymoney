@@ -1,10 +1,10 @@
 moment.lang('en', {
     calendar : {
-        lastDay : '[Yesterday]',
-        sameDay : '[Today]',
-        nextDay : '[Tomorrow]',
-        lastWeek : '[last] dddd',
-        nextWeek : 'dddd',
+        lastDay : 'L [- yesterday]',
+        sameDay : 'L [- today]',
+        nextDay : 'L [- tomorrow]',
+        lastWeek : 'L [- last] dddd',
+        nextWeek : 'L [-] dddd',
         sameElse : 'L'
     }
 });

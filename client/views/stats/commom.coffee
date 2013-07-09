@@ -14,7 +14,7 @@ Template.commonStats.stats = ->
   for own k,v of PostStats.find().fetch()[0]
     
     if k isnt '_id'
-      v.monthName = moment().month(v.month).format("MMMM")
+      v.monthName = moment(new Date(v.year, v.month, 1)).format("MMMM")
       rows.push(v)
 
   return rows
@@ -31,7 +31,7 @@ updateYearSections = ->
     val = post.data("year")
     if val && val != date
       date = val
-      post.before('<p class="date-label text-success">' + date + '</p>')
+      post.before('<p class="date-label label label-info">' + date + '</p>')
 
 
 Template.commonStats.rendered = ->

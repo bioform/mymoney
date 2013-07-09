@@ -28,8 +28,8 @@ Meteor.methods({
 						{
 							userId: user._id,
 							submitted: new Date(),
-							year: attrs.createdAt.getYear(),
-							month: attrs.createdAt.getMonth(),
+							year: attrs.createdAt.getFullYear(),
+							month: attrs.createdAt.getMonth()
 						}
 		);
 
