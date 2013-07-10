@@ -21,7 +21,9 @@
 	height: 0px;
 }
 .or .or-text {
-	display: none;
+	text-align: center;
+	color: #777777;
+	font-weight: bold;
 }
 
 .login-text-and-button {

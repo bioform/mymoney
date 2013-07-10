@@ -4,6 +4,9 @@
 		"all": "All Categories",
 		"new": "New Category"
 	},
+	"post": {
+		"plural": "Tracing"
+	},
 	"button": {
 		"delete": "Delete",
 		"add": "Add"
