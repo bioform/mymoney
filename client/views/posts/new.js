@@ -1,6 +1,3 @@
-var momentDateFormat = moment().lang().longDateFormat.L
-var datePickerFormat = momentDateFormat.toLowerCase()
-
 Template.newPost.rendered = function(){
   var datepicker = $('#new_post_date').datepicker({format: datePickerFormat})
 }

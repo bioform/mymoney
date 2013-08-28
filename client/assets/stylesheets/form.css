@@ -1,0 +1,11 @@
+.form-inline .input-append input {
+	margin-right: 0;
+}
+
+.form-inline input {
+	margin-right: 5px;
+}
+
+.form-inline .btn {
+	margin-right: 5px;
+}

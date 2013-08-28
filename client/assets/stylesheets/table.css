@@ -1,0 +1,13 @@
+div.mini-layout {
+	display: table;
+	table-layout: fixed;
+}
+
+div.mini-layout div.mini-layout-row {
+  display: table-row;
+}
+
+div.mini-layout div.mini-layout-row  div.mini-layout-cell{
+    display: table-cell;
+    padding: 0;
+}

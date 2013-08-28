@@ -1,11 +1,14 @@
 {
   "packages": {
     "router": {},
-    "accounts-ui-bootstrap-dropdown": {},
+    "accounts-ui-bootstrap-dropdown": {
+      "version": "0.1.5"
+    },
     "spin": {},
     "bootstrap-updated": {},
     "errors": {},
     "moment": {},
+    "accounting": {},
     "i18next-meteor": {},
     "jade-handlebars": {
       "git": "git://github.com/SimonDegraeve/meteor-jade-handlebars.git",

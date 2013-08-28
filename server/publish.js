@@ -3,13 +3,24 @@ Meteor.publish("categories", function () {
 });
 
 // Publish all items for requested list_id.
-Meteor.publish('posts', function (categoryId) {
+Meteor.publish('posts', function (categoryId, fromDate, toDate) {
   check(categoryId, String);
+  var conditions = {userId: this.userId}
 
-  if( categoryId == 'all' ){
-  	return Post.find({userId: this.userId});
-  } else {
-  	return Post.find({categoryId: categoryId, userId: this.userId});
+  if( categoryId != 'all' ){
+  	conditions.categoryId = categoryId
   }
-  
+  if( fromDate != null ){
+  	conditions.createdAt = {$gte: fromDate}
+  }
+
+  if( toDate != null ){
+  	if(conditions.createdAt == null){
+  		conditions.createdAt = {}
+  	}
+	conditions.createdAt.$lt = toDate
+  }
+
+  return Post.find(conditions);
+
 });

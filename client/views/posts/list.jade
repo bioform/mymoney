@@ -1,6 +1,44 @@
 template(name="postList")
-  {{> newPost}}
 
-  {{#each posts}} 
+  div#date_filter.dropdown.pull-right(style="margin-bottom: 10px")
+    a#date_filter_menu.dropdown-toggle.btn(href='#', data-toggle='dropdown')
+      i.icon-calendar
+
+    ul.dropdown-menu(style='padding: 20px; padding-bottom: 20px;', role='menu', aria-labelledby='date_filter_menu')
+      li
+        form.form-inline
+          .mini-layout
+            .mini-layout-row
+              .mini-layout-cell.input-append
+                input#from_date(type='search', value="", placeholder="с")<
+                button.btn.clear(type='button')
+                  i.icon-remove
+              .mini-layout-cell.input-append
+                input#to_date(type='search', value="", placeholder="по")<
+                button.btn.clear(type='button')
+                  i.icon-remove
+
+
+  {{> newPost}}
+  .clearfix
+
+  .alert.alert-info
+    | Итого:&nbsp;
+    span.ruble-times
+        | Р
+        span уб.
+    span#total.money
+
+    .pull-right#dataFromAndTo(style="display: none")
+      | Данные&nbsp;
+      span#dataFrom
+        | c&nbsp;
+        span 01.01.2013
+        &nbsp;
+      span#dataTo
+        | по&nbsp;
+        span 01.01.2013
+
+  {{#each posts}}
     {{$ "postItem"}}
-  {{/each}} 
+  {{/each}}
