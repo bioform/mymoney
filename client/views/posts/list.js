@@ -8,9 +8,23 @@ var updateNewPostForm = function(){
   }
 }
 
+var asDate = function(str){
+  var date = (str != null && $.trim(str).length > 0) ? moment(str, momentDateFormat) : null;
+  if( date == null ){
+    // ok
+  } else if( !date.isValid() ) {
+    alert("Incorrect date format");
+    return null;
+  } else {
+    date = date.toDate();
+  }
+  return date;
+}
+
 var updateDateFilterInfo = function(){
-  var fromDate   = Session.get('from_date');
-  var toDate     = Session.get('to_date');
+  var fromDate   = asDate( Session.get('from_date') );
+  var toDate     = asDate( Session.get('to_date') );
+
   var info = $('#dataFromAndTo');
   var from = $('#dataFrom', info);
   var to   = $('#dataTo', info);
@@ -44,8 +58,9 @@ var postsHandle = null;
 // Always be subscribed to the posts for the selected category.
 Deps.autorun(function () {
   var categoryId = Session.get('category_id');
-  var fromDate   = Session.get('from_date');
-  var toDate     = Session.get('to_date');
+
+  var fromDate   = asDate( Session.get('from_date') );
+  var toDate     = asDate( Session.get('to_date') );
 
   if(fromDate){
     fromDate.setHours(0);
@@ -61,9 +76,10 @@ Deps.autorun(function () {
 
   postsHandle    = Meteor.subscribe('posts', categoryId, fromDate, toDate);
 
-  updateDateFilterInfo()
+  updateNewPostForm();
 
-  updateNewPostForm()
+  // update if data was changed
+  updateDateFilterInfo();
 
 });
 
@@ -94,27 +110,15 @@ var updateDateSections = function(){
 
 }
 
-var applayDateFilter = function(e){
-      var input = e.currentTarget ? $(e.currentTarget) : e;
-      var date = (input.length > 0) ? moment(input.val(), momentDateFormat) : null;
-      if( date == null ){
-        // ok
-      } else if( !date.isValid() ) {
-        alert("Incorrect date format");
-        return;
-      } else {
-        date = date.toDate();
-      }
-      Session.set( input.attr('id'), date );
-}
-
 Template.postList.rendered = function(){
+  // update if we switched from another tab
   updateDateSections();
   updateNewPostForm();
-  $('#from_date, #to_date').datepicker({format: datePickerFormat}).on('changeDate', applayDateFilter);
+  updateDateFilterInfo();
 
   $('.dropdown-toggle').dropdown()
 
+  // calculate total
   var total = 0;
   $('.post .money').each(function(){
     total += parseInt($(this).html());
@@ -122,15 +126,3 @@ Template.postList.rendered = function(){
   $('#total').html(accounting.formatNumber(total));
 }
 
-Template.postList.events({
-  'click #date_filter input': function(e){
-    e.preventDefault()
-    e.stopPropagation()
-  },
-  'blur #date_filter input': applayDateFilter,
-  'click #date_filter .btn.clear': function(e){
-    var input = $(e.currentTarget).prev('input');
-    input.val('');
-    applayDateFilter(input);
-  }
-})

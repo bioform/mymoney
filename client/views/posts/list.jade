@@ -1,25 +1,7 @@
 template(name="postList")
-
-  div#date_filter.dropdown.pull-right(style="margin-bottom: 10px")
-    a#date_filter_menu.dropdown-toggle.btn(href='#', data-toggle='dropdown')
-      i.icon-calendar
-
-    ul.dropdown-menu(style='padding: 20px; padding-bottom: 20px;', role='menu', aria-labelledby='date_filter_menu')
-      li
-        form.form-inline
-          .mini-layout
-            .mini-layout-row
-              .mini-layout-cell.input-append
-                input#from_date(type='search', value="", placeholder="с")<
-                button.btn.clear(type='button')
-                  i.icon-remove
-              .mini-layout-cell.input-append
-                input#to_date(type='search', value="", placeholder="по")<
-                button.btn.clear(type='button')
-                  i.icon-remove
-
-
+  {{> dateFilter }}
   {{> newPost}}
+
   .clearfix
 
   .alert.alert-info
