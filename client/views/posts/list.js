@@ -1,3 +1,5 @@
+var momentDateFormat = moment().lang().longDateFormat.L
+
 var updateNewPostForm = function(){
   var categoryId = Session.get('category_id');
 
@@ -54,9 +56,21 @@ var updateDateFilterInfo = function(){
 
 }
 
+var initPostListDateFilter = function(){
+  if( Session.get("initPostListDateFilter") == null ){
+    var date = new Date();
+    var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+    Session.set('from_date', moment(firstDay).format(momentDateFormat));
+    Session.set("initPostListDateFilter", true);
+  }
+}
+
 var postsHandle = null;
 // Always be subscribed to the posts for the selected category.
 Deps.autorun(function () {
+  
+  initPostListDateFilter();
+
   var categoryId = Session.get('category_id');
 
   var fromDate   = asDate( Session.get('from_date') );
