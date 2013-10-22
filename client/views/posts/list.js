@@ -57,7 +57,6 @@ var updateDateFilterInfo = function(){
 }
 
 var initPostListDateFilter = function(){
-  alert(Session.get("initPostListDateFilter") == null );
   if( Session.get("initPostListDateFilter") == null ){
     var date = new Date();
     var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
