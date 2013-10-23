@@ -117,7 +117,7 @@ Meteor.publish('sum_by_category', (categoryId) ->
   userId = this.userId
   initializing = true
  
-  handle = Post.find({categoryId: categoryId}).observeChanges(
+  handle = Post.find({categoryId: categoryId}, {sort: {createdAt: -1}}).observeChanges(
     added: (id) ->
       if !initializing
         self.changed("post_stats", categoryId, agg_amount(userId, categoryId))

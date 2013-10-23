@@ -18,7 +18,7 @@ Meteor.publish('posts', function (categoryId, fromDate, toDate) {
   	if(conditions.createdAt == null){
   		conditions.createdAt = {}
   	}
-	conditions.createdAt.$lt = toDate
+    conditions.createdAt.$lt = toDate
   }
 
   return Post.find(conditions);
