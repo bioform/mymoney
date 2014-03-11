@@ -96,6 +96,11 @@ agg_amount = (userId, categoryId, fromDate, toDate) ->
       month: "$_id.month"
       sum: 1 
 
+  pipeline.push
+    $sort:
+      year: -1
+      month: -1
+
  
   data = Post.aggregate(pipeline)
   #console.log("===!!!=====>", data)
@@ -117,7 +122,7 @@ Meteor.publish('sum_by_category', (categoryId) ->
   userId = this.userId
   initializing = true
  
-  handle = Post.find({categoryId: categoryId}, {sort: {createdAt: -1}}).observeChanges(
+  handle = Post.find({categoryId: categoryId}).observeChanges(
     added: (id) ->
       if !initializing
         self.changed("post_stats", categoryId, agg_amount(userId, categoryId))
